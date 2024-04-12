@@ -11,8 +11,13 @@ def fetch_users(status):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
-        # Assuming data is directly in list format; adjust based on actual API response structure
-        return pd.DataFrame(data)
+        # Check if data is a list or a single dict
+        if isinstance(data, dict):
+            # Convert single dict to DataFrame
+            return pd.DataFrame([data])
+        else:
+            # Convert list of dicts to DataFrame
+            return pd.DataFrame(data)
     else:
         return pd.DataFrame({'Error': ['Failed to fetch data'], 'Status Code': [response.status_code]})
 
