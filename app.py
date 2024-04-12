@@ -4,7 +4,7 @@ import pandas as pd
 
 def fetch_users(status):
     """Fetches users based on status from the API and returns a DataFrame with specific headers."""
-    url = f"https://crates.dev.zero1byzerodha.com/users/list?status={status}"
+    url = f"https://crates.zero1byzerodha.com/users/list?status={status}"
     headers = {
         'Authorization': 'Bearer CIkam6eUXoOmeSYHrZTJ6kKdpH1y4ZdkdzO9XyusJpNNqYxOxq'
     }
