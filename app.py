@@ -14,10 +14,9 @@ def fetch_users(status):
         # Check if data is a list or a single dict
         if isinstance(data, dict):
             # Convert single dict to DataFrame
-            return pd.DataFrame([data])
-        else:
-            # Convert list of dicts to DataFrame
-            return pd.DataFrame(data)
+            data = [data]  # Convert dict to list of dicts
+        # Convert list of dicts to DataFrame
+        return pd.DataFrame(data)
     else:
         return pd.DataFrame({'Error': ['Failed to fetch data'], 'Status Code': [response.status_code]})
 
@@ -37,7 +36,8 @@ def main():
             if 'Error' in data.columns:
                 st.error(f"Error: {data.iloc[0]['Error']} (Status code: {data.iloc[0]['Status Code']})")
             else:
-                st.dataframe(data)  # Displaying the DataFrame in Streamlit
+                # Displaying the DataFrame in Streamlit with all headers
+                st.dataframe(data)
 
 if __name__ == "__main__":
     main()
