@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 
 def fetch_users(status):
-    """Fetches users based on status from the API and returns a DataFrame."""
+    """Fetches users based on status from the API and returns a DataFrame with specific headers."""
     url = f"https://crates.dev.zero1byzerodha.com/users/list?status={status}"
     headers = {
         'Authorization': 'Bearer CIkam6eUXoOmeSYHrZTJ6kKdpH1y4ZdkdzO9XyusJpNNqYxOxq'
@@ -11,16 +11,15 @@ def fetch_users(status):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
-        # Check if data is a list or a single dict
+        # Convert data to DataFrame with predefined columns
         if isinstance(data, dict):
-            # Convert single dict to list of dicts
-            data = [data]
-        # Convert list of dicts to DataFrame
+            data = [data]  # Ensure data is in list format
+
         df = pd.DataFrame(data)
-        # Select and reorder columns
-        df = df[['age', 'email', 'phoneNumber', 'status', 'userLocation']]
-        # Rename columns
-        df.columns = ['Age', 'Email', 'Phone Number', 'Status', 'User Location']
+        # Define columns even if they are missing in the response
+        columns = ['age', 'email', 'phoneNumber', 'status', 'userLocation']
+        # Reindex DataFrame to include all required columns, fill missing with None or appropriate defaults
+        df = df.reindex(columns=columns, fill_value=pd.NA)
         return df
     else:
         return pd.DataFrame({'Error': ['Failed to fetch data'], 'Status Code': [response.status_code]})
@@ -41,7 +40,7 @@ def main():
             if 'Error' in data.columns:
                 st.error(f"Error: {data.iloc[0]['Error']} (Status code: {data.iloc[0]['Status Code']})")
             else:
-                # Displaying the DataFrame in Streamlit
+                # Displaying the DataFrame in Streamlit with all headers
                 st.dataframe(data)
 
 if __name__ == "__main__":
