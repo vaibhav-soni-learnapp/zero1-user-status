@@ -1,47 +1,62 @@
 import streamlit as st
-import requests
 import pandas as pd
+import requests
+from enum import Enum
 
-def fetch_users(status):
-    """Fetches users based on status from the API and returns a DataFrame with specific headers."""
-    url = f"https://crates.zero1byzerodha.com/users/list?status={status}"
+class UserStatus(Enum):
+    REJECTED = 'REJECTED'
+    WAITLISTED = 'WAITLISTED'
+    CLAIMED = 'CLAIMED'
+    SELECTED = 'SELECTED'
+
+def fetch_data(url, status=None):
+    """Fetch data from the API and return a DataFrame."""
     headers = {
-        'Authorization': 'Bearer CIkam6eUXoOmeSYHrZTJ6kKdpH1y4ZdkdzO9XyusJpNNqYxOxq'
+        'authorization': 'Bearer d011a53f5413423fceaf0bf8e9db78dde18dff63'
     }
+    # Add query parameter if status is selected
+    if status:
+        url += f"?status={status}"
     response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        # Convert data to DataFrame with predefined columns
-        if isinstance(data, dict):
-            data = [data]  # Ensure data is in list format
-
-        df = pd.DataFrame(data)
-        # Define columns even if they are missing in the response
-        columns = ['age', 'email', 'phoneNumber', 'status', 'userLocation']
-        # Reindex DataFrame to include all required columns, fill missing with None or appropriate defaults
-        df = df.reindex(columns=columns, fill_value=pd.NA)
-        return df
-    else:
-        return pd.DataFrame({'Error': ['Failed to fetch data'], 'Status Code': [response.status_code]})
+    data = response.json()
+    return pd.json_normalize(data, 'users')
 
 def main():
-    """Main function for the Streamlit app."""
-    st.title('User Status Dashboard')
+    st.title('⚡ User Data')
 
-    user_status = st.selectbox(
-        "Select User Status",
-        options=["ACCEPTED", "REJECTED", "WAITLISTED", "CLAIMED", "SELECTED"],
-        index=3  # Default to CLAIMED as an example
-    )
+    # URL without status parameter
+    url = "https://crates.zero1byzerodha.com/users/list"
 
-    if st.button('Fetch Users'):
+    # Dropdown to select status or no filter
+    status = st.selectbox('Select User Status or Choose None to fetch all:', [None] + list(UserStatus))
+
+    if st.button('Fetch Data'):
         with st.spinner('Fetching data...'):
-            data = fetch_users(user_status)
-            if 'Error' in data.columns:
-                st.error(f"Error: {data.iloc[0]['Error']} (Status code: {data.iloc[0]['Status Code']})")
-            else:
-                # Displaying the DataFrame in Streamlit with all headers
-                st.dataframe(data)
+            # Convert status to the string value if not None
+            status_value = status.value if status else None
+            df = fetch_data(url, status=status_value)
+            st.write(df)
+
+            # Display total number of records fetched
+            st.write(f"Total records fetched: {len(df)}")
+                
+            # Calculate and display value counts for acceptanceReason
+            if 'acceptanceReason' in df.columns:
+                st.write("Value counts for each Acceptance Reason:")
+                acceptance_counts = df['acceptanceReason'].value_counts()
+                st.write(acceptance_counts)
+
+            # Generate download link for the DataFrame
+            csv = df.to_csv(index=False)
+            st.download_button(
+                label="Download data as CSV",
+                data=csv,
+                file_name="user_data.csv",
+                mime="text/csv",
+                key='download-csv'
+            )
+    else:
+                st.write("No data found for the selected status.")
 
 if __name__ == "__main__":
     main()
