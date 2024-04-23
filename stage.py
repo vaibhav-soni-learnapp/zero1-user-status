@@ -25,7 +25,7 @@ def main():
     st.title('⚡ User Data')
 
     # URL without status parameter
-    url = "https://crates.zero1byzerodha.com/users/list"
+    url = "https://crates.stage.zero1byzerodha.com/users/list"
 
     # Dropdown to select status or no filter
     status = st.selectbox('Select User Status or Choose None to fetch all:', [None] + list(UserStatus))
