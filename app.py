@@ -39,7 +39,7 @@ def main():
             st.write(f"Total records fetched: {len(df)}")
             st.write(df)
 
-
+            st.balloons()
                 
            
 
