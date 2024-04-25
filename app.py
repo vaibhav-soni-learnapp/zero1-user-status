@@ -8,6 +8,7 @@ class UserStatus(Enum):
     WAITLISTED = 'WAITLISTED'
     CLAIMED = 'CLAIMED'
     SELECTED = 'SELECTED'
+    REJECTED_WITH_MERCH = 'REJECTED_WITH_MERCH'
 
 def fetch_data(url, status=None):
     """Fetch data from the API and return a DataFrame."""
