@@ -71,8 +71,8 @@ def main():
                 total_count = true_count + y_count
                 with col3:
                     # Display the result
-                    st.write("Total count of 'True' in RSVP Accepted and 'Y' in Plus One:")
-                    st.write(total_count)
+                    st.write("Total Fest Participants")
+                    st.write(total_count,🧑‍🤝‍🧑)
             
             # Calculate and display value counts for isWaitlistCom
          #   if 'isWaitlistCom' in df.columns:
