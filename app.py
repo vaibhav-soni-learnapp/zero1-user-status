@@ -37,10 +37,9 @@ def main():
             status_value = status.value if status else None
             df = fetch_data(url, status=status_value)
             # Display total number of records fetched
-            st.write(f"Total records fetched: {len(df)}")
-            st.write(df)
+            
 
-          #  st.balloons()
+          # st.balloons()
                 
            
 
@@ -87,7 +86,8 @@ def main():
              #   st.write("Value counts for isPlusOneSent:")
              #   st.write(plus_one_sent_counts)
             
-            
+            st.write(f"Total records fetched: {len(df)}")
+            st.write(df)
             
             # Calculate and display value counts for acceptanceReason
             if 'acceptanceReason' in df.columns:
