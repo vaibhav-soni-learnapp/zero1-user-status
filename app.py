@@ -35,10 +35,11 @@ def main():
             # Convert status to the string value if not None
             status_value = status.value if status else None
             df = fetch_data(url, status=status_value)
-            st.write(df)
-
             # Display total number of records fetched
             st.write(f"Total records fetched: {len(df)}")
+            st.write(df)
+
+
                 
            
 
