@@ -72,7 +72,7 @@ def main():
                 with col3:
                     # Display the result
                     st.write("Total Fest Participants 🧑‍🤝‍🧑")
-                    st.write(total_count) 
+                    st.title(total_count) 
                 
             
             # Calculate and display value counts for isWaitlistCom
