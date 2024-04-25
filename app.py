@@ -44,22 +44,22 @@ def main():
 
             # Assuming df is your DataFrame
 
-                           # Creating two columns for side by side display
-                col1, col2 = st.columns(2)
+            # Creating two columns for side by side display
+            col1, col2 = st.columns(2)
                 
                 # Display value counts for rsvpAccepted in the first column
-                if 'rsvpAccepted' in df.columns:
-                    rsvp_accepted_counts = df['rsvpAccepted'].value_counts()
-                    with col1:
-                        st.write("Value counts for RSVP Accepted:")
-                        st.write(rsvp_accepted_counts)
+            if 'rsvpAccepted' in df.columns:
+            rsvp_accepted_counts = df['rsvpAccepted'].value_counts()
+            with col1:
+                st.write("Value counts for RSVP Accepted:")
+                st.write(rsvp_accepted_counts)
                 
-                # Display value counts for plusOne in the second column
-                if 'plusOne' in df.columns:
-                    plus_one_counts = df['plusOne'].value_counts()
-                    with col2:
-                        st.write("Value counts for plusOne:")
-                        st.write(plus_one_counts)
+             # Display value counts for plusOne in the second column
+            if 'plusOne' in df.columns:
+                plus_one_counts = df['plusOne'].value_counts()
+                with col2:
+                    st.write("Value counts for plusOne:")
+                    st.write(plus_one_counts)
             
             # Calculate and display value counts for isWaitlistCom
          #   if 'isWaitlistCom' in df.columns:
