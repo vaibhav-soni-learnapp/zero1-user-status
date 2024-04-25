@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import matplotlib.pyplot as plt
 from enum import Enum
 
 class UserStatus(Enum):
@@ -88,6 +89,17 @@ def main():
             
             st.write(f"Total records fetched: {len(df)}")
             st.write(df)
+
+            # Creating a histogram for the "age" column
+            fig, ax = plt.subplots()
+            ax.hist(df['age'], bins=20, color='skyblue', edgecolor='black')
+            ax.set_title('Age Distribution')
+            ax.set_xlabel('Age')
+            ax.set_ylabel('Frequency')
+            ax.grid(True)
+            
+            # Display the plot in Streamlit
+            st.pyplot(fig)
             
             # Calculate and display value counts for acceptanceReason
             if 'acceptanceReason' in df.columns:
