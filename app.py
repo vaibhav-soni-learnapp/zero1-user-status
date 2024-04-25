@@ -40,7 +40,7 @@ def main():
             st.write(f"Total records fetched: {len(df)}")
             st.write(df)
 
-            st.balloons()
+          #  st.balloons()
                 
            
 
@@ -83,7 +83,7 @@ def main():
                 acceptance_counts = df['acceptanceReason'].value_counts()
                 st.write(acceptance_counts)
 
-            st.snow()
+        #    st.snow()
             # Generate download link for the DataFrame
             csv = df.to_csv(index=False)
             st.download_button(
