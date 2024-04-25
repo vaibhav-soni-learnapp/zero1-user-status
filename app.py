@@ -63,13 +63,12 @@ def main():
                     st.write("Value counts for plusOne:")
                     st.write(plus_one_counts)
 
-            # Get count of 'True' from rsvp_accepted_counts and 'Y' from plus_one_counts
-            true_count = rsvp_accepted_counts.get(True, 0)  # Defaults to 0 if 'True' not present
-            y_count = plus_one_counts.get('Y', 0)          # Defaults to 0 if 'Y' not present
-        
-            # Calculate the sum of these specific values
-            total_count = true_count + y_count
-        
+                # Get count of 'True' from rsvp_accepted_counts and 'Y' from plus_one_counts
+                true_count = rsvp_accepted_counts.get(True, 0)  # Defaults to 0 if 'True' not present
+                y_count = plus_one_counts.get('Y', 0)          # Defaults to 0 if 'Y' not present
+            
+                # Calculate the sum of these specific values
+                total_count = true_count + y_count
                 with col3:
                     # Display the result
                     st.write("Total count of 'True' in RSVP Accepted and 'Y' in Plus One:")
