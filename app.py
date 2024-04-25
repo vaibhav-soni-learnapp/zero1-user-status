@@ -44,32 +44,36 @@ def main():
 
             # Assuming df is your DataFrame
 
-            # Calculate and display value counts for rsvpAccepted
-            if 'rsvpAccepted' in df.columns:
-                rsvp_accepted_counts = df['rsvpAccepted'].value_counts()
-                st.write("Value counts for RSVP Accepted:")
-                st.write(rsvp_accepted_counts)
-            
-            # Calculate and display value counts for isPlusOneSent
-            if 'isPlusOneSent' in df.columns:
-                plus_one_sent_counts = df['isPlusOneSent'].value_counts()
-                st.write("Value counts for isPlusOneSent:")
-                st.write(plus_one_sent_counts)
-            
-            
-            
-            # Calculate and display value counts for plusOne
-            if 'plusOne' in df.columns:
-                plus_one_counts = df['plusOne'].value_counts()
-                st.write("Value counts for plusOne:")
-                st.write(plus_one_counts)
+                           # Creating two columns for side by side display
+                col1, col2 = st.columns(2)
+                
+                # Display value counts for rsvpAccepted in the first column
+                if 'rsvpAccepted' in df.columns:
+                    rsvp_accepted_counts = df['rsvpAccepted'].value_counts()
+                    with col1:
+                        st.write("Value counts for RSVP Accepted:")
+                        st.write(rsvp_accepted_counts)
+                
+                # Display value counts for plusOne in the second column
+                if 'plusOne' in df.columns:
+                    plus_one_counts = df['plusOne'].value_counts()
+                    with col2:
+                        st.write("Value counts for plusOne:")
+                        st.write(plus_one_counts)
             
             # Calculate and display value counts for isWaitlistCom
-            if 'isWaitlistCom' in df.columns:
-                waitlist_com_counts = df['isWaitlistCom'].value_counts()
-                st.write("Value counts for isWaitlistCom:")
-                st.write(waitlist_com_counts)
+         #   if 'isWaitlistCom' in df.columns:
+              #  waitlist_com_counts = df['isWaitlistCom'].value_counts()
+              #  st.write("Value counts for isWaitlistCom:")
+               #  st.write(waitlist_com_counts)
 
+            # Calculate and display value counts for isPlusOneSent
+         #   if 'isPlusOneSent' in df.columns:
+             #   plus_one_sent_counts = df['isPlusOneSent'].value_counts()
+             #   st.write("Value counts for isPlusOneSent:")
+             #   st.write(plus_one_sent_counts)
+            
+            
             
             # Calculate and display value counts for acceptanceReason
             if 'acceptanceReason' in df.columns:
