@@ -47,7 +47,7 @@ def main():
             
             
             # Creating two columns for side by side display
-            col1, col2 = st.columns(2)
+            col1, col2, clo3 = st.columns(3)
             
             # Display value counts for rsvpAccepted in the first column
             if 'rsvpAccepted' in df.columns:
@@ -63,6 +63,18 @@ def main():
                     st.write("Value counts for plusOne:")
                     st.write(plus_one_counts)
 
+            # Get count of 'True' from rsvp_accepted_counts and 'Y' from plus_one_counts
+            true_count = rsvp_accepted_counts.get(True, 0)  # Defaults to 0 if 'True' not present
+            y_count = plus_one_counts.get('Y', 0)          # Defaults to 0 if 'Y' not present
+        
+            # Calculate the sum of these specific values
+            total_count = true_count + y_count
+        
+                with col3:
+                    # Display the result
+                    st.write("Total count of 'True' in RSVP Accepted and 'Y' in Plus One:")
+                    st.write(total_count)
+            
             # Calculate and display value counts for isWaitlistCom
          #   if 'isWaitlistCom' in df.columns:
               #  waitlist_com_counts = df['isWaitlistCom'].value_counts()
