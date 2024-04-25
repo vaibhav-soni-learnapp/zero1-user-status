@@ -82,6 +82,7 @@ def main():
                 acceptance_counts = df['acceptanceReason'].value_counts()
                 st.write(acceptance_counts)
 
+            st.snow()
             # Generate download link for the DataFrame
             csv = df.to_csv(index=False)
             st.download_button(
