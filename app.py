@@ -40,6 +40,37 @@ def main():
             # Display total number of records fetched
             st.write(f"Total records fetched: {len(df)}")
                 
+           
+
+            # Assuming df is your DataFrame
+
+            # Calculate and display value counts for rsvpAccepted
+            if 'rsvpAccepted' in df.columns:
+                rsvp_accepted_counts = df['rsvpAccepted'].value_counts()
+                print("Value counts for RSVP Accepted:")
+                print(rsvp_accepted_counts)
+            
+            # Calculate and display value counts for isPlusOneSent
+            if 'isPlusOneSent' in df.columns:
+                plus_one_sent_counts = df['isPlusOneSent'].value_counts()
+                print("Value counts for isPlusOneSent:")
+                print(plus_one_sent_counts)
+            
+            
+            
+            # Calculate and display value counts for plusOne
+            if 'plusOne' in df.columns:
+                plus_one_counts = df['plusOne'].value_counts()
+                print("Value counts for plusOne:")
+                print(plus_one_counts)
+            
+            # Calculate and display value counts for isWaitlistCom
+            if 'isWaitlistCom' in df.columns:
+                waitlist_com_counts = df['isWaitlistCom'].value_counts()
+                print("Value counts for isWaitlistCom:")
+                print(waitlist_com_counts)
+
+            
             # Calculate and display value counts for acceptanceReason
             if 'acceptanceReason' in df.columns:
                 st.write("Value counts for each Acceptance Reason:")
