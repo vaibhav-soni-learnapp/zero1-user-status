@@ -47,28 +47,28 @@ def main():
             # Calculate and display value counts for rsvpAccepted
             if 'rsvpAccepted' in df.columns:
                 rsvp_accepted_counts = df['rsvpAccepted'].value_counts()
-                print("Value counts for RSVP Accepted:")
-                print(rsvp_accepted_counts)
+                st.write("Value counts for RSVP Accepted:")
+                st.write(rsvp_accepted_counts)
             
             # Calculate and display value counts for isPlusOneSent
             if 'isPlusOneSent' in df.columns:
                 plus_one_sent_counts = df['isPlusOneSent'].value_counts()
-                print("Value counts for isPlusOneSent:")
-                print(plus_one_sent_counts)
+                st.write("Value counts for isPlusOneSent:")
+                st.write(plus_one_sent_counts)
             
             
             
             # Calculate and display value counts for plusOne
             if 'plusOne' in df.columns:
                 plus_one_counts = df['plusOne'].value_counts()
-                print("Value counts for plusOne:")
-                print(plus_one_counts)
+                st.write("Value counts for plusOne:")
+                st.write(plus_one_counts)
             
             # Calculate and display value counts for isWaitlistCom
             if 'isWaitlistCom' in df.columns:
                 waitlist_com_counts = df['isWaitlistCom'].value_counts()
-                print("Value counts for isWaitlistCom:")
-                print(waitlist_com_counts)
+                st.write("Value counts for isWaitlistCom:")
+                st.write(waitlist_com_counts)
 
             
             # Calculate and display value counts for acceptanceReason
