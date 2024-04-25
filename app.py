@@ -47,7 +47,7 @@ def main():
             
             
             # Creating two columns for side by side display
-            col1, col2, clo3 = st.columns(3)
+            col1, col2, col3 = st.columns(3)
             
             # Display value counts for rsvpAccepted in the first column
             if 'rsvpAccepted' in df.columns:
